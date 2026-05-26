@@ -36,6 +36,7 @@ button {
 
 .timeline {
   position: relative;
+  z-index: 2;
   margin-top: 8px;
 }
 
@@ -210,3 +211,5 @@ details[open] summary { margin-bottom: 8px; }
   transition: opacity 0.3s ease;
 }
 .toast-msg.show { opacity: 1; }
+
+.item, article { position: relative; z-index: 2; }
