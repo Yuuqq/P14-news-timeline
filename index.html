@@ -42,9 +42,9 @@ a[href]::after{content:" (" attr(href) ")";font-size:9pt;color:#666}
       <label for="jsonInput">时间轴 JSON</label>
       <textarea id="jsonInput" rows="12"></textarea>
       <div class="actions">
-        <button id="renderBtn" type="button" aria-label="render">渲染时间线</button>
-        <button id="addBtn" type="button" class="btn-secondary" aria-label="add">➕ 添加事件</button>
-        <button id="exportBtn" type="button" class="btn-secondary" aria-label="export">导出 JSON</button>
+        <button id="renderBtn" type="button">渲染时间线</button>
+        <button id="addBtn" type="button" class="btn-secondary">➕ 添加事件</button>
+        <button id="exportBtn" type="button" class="btn-secondary">导出 JSON</button>
         <button id="exportPngBtn" type="button" class="btn-secondary" data-target="timeline" aria-label="导出 PNG">📸 导出 PNG</button>
       </div>
       <p id="status" role="status" aria-live="polite">状态: 等待渲染</p>

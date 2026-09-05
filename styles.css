@@ -74,6 +74,24 @@ button {
 .title { margin: 4px 0; font-weight: 700; }
 .desc { margin: 0; line-height: 1.6; }
 
+/* Small delete button pinned to card top-right */
+.delete-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: auto;
+  padding: 2px 8px;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  box-shadow: none;
+  background: rgba(0, 0, 0, 0.08);
+  color: inherit;
+}
+.delete-btn:hover {
+  background: rgba(0, 0, 0, 0.15);
+  transform: none;
+}
+
 
 /* === CSS Professor Upgrade (Round 20) === */
 
@@ -112,7 +130,7 @@ a { transition: color 0.15s ease; }
   .app, main, .container { padding: 12px; }
   h1 { font-size: 1.5rem; }
   h2 { font-size: 1.2rem; }
-  button, .btn { width: 100%; }
+  .actions button, .btn { width: 100%; }
 }
 
 /* === Dark Mode Override (auto-generated) === */
