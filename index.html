@@ -10,6 +10,7 @@
   <meta name="color-scheme" content="light dark">
   <title>P14 交互式突发新闻时间轴</title>
   <link rel="stylesheet" href="../shared/design-tokens.css" />
+<link rel="stylesheet" href="https://yuuqq.github.io/shared/design-tokens.css" />
   <link rel="stylesheet" href="./styles.css" />
   <meta name="description" content="交互式突发新闻时间轴。P14 交互式突发新闻时间轴" />
   <meta property="og:title" content="P14 交互式突发新闻时间轴" />
@@ -36,7 +37,7 @@ a[href]::after{content:" (" attr(href) ")";font-size:9pt;color:#666}
     </header>
 
     <section class="card">
-      <details class="teach-card" open>
+      <details class="teach-card">
         <summary>🎓 时间轴叙事与突发新闻</summary>
         <p>时间轴是突发新闻报道的核心可视化工具。它可以帮助读者快速理解事件发展顺序，捕捉关键转折点。其应用场景包括危机管理可视化、政策演变追踪、司法案件进展研判等。</p>
       </details>
@@ -70,7 +71,21 @@ a[href]::after{content:" (" attr(href) ")";font-size:9pt;color:#666}
     <a href="https://yuuqq.github.io/journalism-toolbox/" style="text-decoration:none;">📋 工具箱导航</a>
     <span style="opacity:.4">P14</span>
   </nav>
-  <script src="../shared/releases/v2.6/loader.js" data-modules="dark,export-png,cmd,toast,onboarding,url-state,pedagogy-p1,pedagogy-p2,nav,kbd"></script>
+  <script>
+(function () {
+  var modules = "dark,export-png,cmd,toast,onboarding,url-state,pedagogy-p1,pedagogy-p2,nav,kbd";
+  var s = document.createElement("script");
+  s.src = "../shared/releases/v2.6/loader.js";
+  s.setAttribute("data-modules", modules);
+  s.onerror = function () {
+    var t = document.createElement("script");
+    t.src = "https://yuuqq.github.io/shared/releases/v2.6/loader.js";
+    t.setAttribute("data-modules", modules);
+    document.body.appendChild(t);
+  };
+  document.body.appendChild(s);
+})();
+</script>
   <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{})}</script>
 
 </body>
