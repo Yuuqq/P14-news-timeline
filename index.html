@@ -3,13 +3,11 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📰</text></svg>" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#f6f9f5">
   <meta name="color-scheme" content="light dark">
   <title>P14 交互式突发新闻时间轴</title>
-  <link rel="stylesheet" href="../shared/design-tokens.css" />
   <link rel="stylesheet" href="./styles.css" />
   <meta name="description" content="交互式突发新闻时间轴。P14 交互式突发新闻时间轴" />
   <meta property="og:title" content="P14 交互式突发新闻时间轴" />
@@ -46,10 +44,9 @@ a[href]::after{content:" (" attr(href) ")";font-size:9pt;color:#666}
       <label for="jsonInput">时间轴 JSON</label>
       <textarea id="jsonInput" rows="12"></textarea>
       <div class="actions">
-        <button id="renderBtn" type="button" aria-label="render">渲染时间线</button>
-        <button id="addBtn" type="button" class="btn-secondary" aria-label="add">➕ 添加事件</button>
-        <button id="exportBtn" type="button" class="btn-secondary" aria-label="export">导出 JSON</button>
-        <button id="exportPngBtn" type="button" class="btn-secondary" data-target="timeline" aria-label="导出 PNG">📸 导出 PNG</button>
+        <button id="renderBtn" type="button">渲染时间线</button>
+        <button id="addBtn" type="button" class="btn-secondary">➕ 添加事件</button>
+        <button id="exportBtn" type="button" class="btn-secondary">导出 JSON</button>
       </div>
       <p id="status" role="status" aria-live="polite">状态: 等待渲染</p>
     </section>
@@ -70,7 +67,6 @@ a[href]::after{content:" (" attr(href) ")";font-size:9pt;color:#666}
     <a href="https://yuuqq.github.io/journalism-toolbox/" style="text-decoration:none;">📋 工具箱导航</a>
     <span style="opacity:.4">P14</span>
   </nav>
-  <script src="../shared/releases/v2.6/loader.js" data-modules="dark,export-png,cmd,toast,onboarding,url-state,pedagogy-p1,pedagogy-p2,nav,kbd"></script>
   <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{})}</script>
 
 </body>

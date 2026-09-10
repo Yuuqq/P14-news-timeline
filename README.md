@@ -13,8 +13,6 @@
 
 ## ✨ 功能特性
 
-- 🌗 暗色/亮色模式一键切换
-- 🔍 `Ctrl+K` 跨工具搜索跳转
 - 📱 PWA 离线支持（可安装到桌面/手机）
 - ♿ 完整无障碍标签（aria-label）
 - 🔒 所有数据仅在浏览器本地处理
@@ -27,12 +25,6 @@
 
 ## 📦 共享模块
 
-- `design-tokens.css` — 统一设计令牌与暗色模式
-- `dark-toggle.js` — 🌗 暗色/亮色模式切换
-- `cmd-palette.js` — 🔍 Ctrl+K 命令面板
-- `toast.js` — 🔔 Toast 通知系统
-- `onboarding.js` — 🎯 首次访问引导
-- `export-png.js` — 📸 PNG 导出
 - `sw.js` — 📱 PWA Service Worker
 - `pm-metrics.js` — 📊 使用量遥测
 
