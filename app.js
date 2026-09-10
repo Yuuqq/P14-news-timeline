@@ -1,6 +1,6 @@
 /**
  * P14 交互式突发新闻时间轴
- * Upgraded: interactive add/delete events, drag-sort-ready, color labels, export JSON
+ * Upgraded: interactive add/delete events, color labels, export JSON
  */
 const jsonInput = document.getElementById("jsonInput");
 const renderBtn = document.getElementById("renderBtn");
@@ -25,9 +25,7 @@ function setStatus(text) {
   statusEl.textContent = `状态: ${text}`;
 }
 
-function escapeHtml(str) {
-  return String(str ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}
+
 
 function renderTimeline(items) {
   timelineEl.innerHTML = "";
@@ -54,10 +52,22 @@ function renderTimeline(items) {
     const desc = document.createElement("p");
     desc.className = "desc";
     desc.textContent = String(it.desc ?? "");
+    desc.title = "双击编辑描述";
+
+    desc.addEventListener("dblclick", () => {
+      desc.contentEditable = "true";
+      desc.focus();
+    });
+    desc.addEventListener("blur", () => {
+      desc.contentEditable = "false";
+      it.desc = desc.textContent;
+      jsonInput.value = JSON.stringify(currentData, null, 2);
+    });
 
     const deleteBtn = document.createElement("button");
     deleteBtn.className = "delete-btn";
     deleteBtn.textContent = "✕";
+    deleteBtn.setAttribute("aria-label", "删除此事件");
     deleteBtn.title = "删除此事件";
     deleteBtn.addEventListener("click", () => {
       currentData.splice(i, 1);
@@ -149,29 +159,3 @@ syncAndRender();
 })();
 
 
-// === Auto-load demo timeline events ===
-(function() {
-  setTimeout(function() {
-    var addBtn = document.querySelector('[id*="add"]') || document.querySelector('button');
-    if (!addBtn) return;
-    var events = [
-      {date: '2024-01-15', title: '某市发布新城市规划方案', desc: '涉及旧城区大规模改造，引发市民广泛关注'},
-      {date: '2024-02-20', title: '居民自发组织听证会', desc: '超过500名市民参与，提出补偿标准、安置方案等核心诉求'},
-      {date: '2024-03-08', title: '媒体深度调查报道', desc: '记者发现规划方案中的利益关联，引发舆论震动'},
-      {date: '2024-04-12', title: '政府回应修改方案', desc: '提高补偿标准30%，增加公众参与环节'},
-      {date: '2024-05-01', title: '修正案正式实施', desc: '首批居民签订新协议，社会舆论趋于平稳'}
-    ];
-    // Try to find form inputs and fill them
-    var dateInput = document.querySelector('input[type="date"]');
-    var titleInput = document.querySelector('input[type="text"]');
-    var descInput = document.querySelector('textarea') || document.querySelectorAll('input[type="text"]')[1];
-    if (dateInput && titleInput) {
-      events.forEach(function(e) {
-        dateInput.value = e.date;
-        titleInput.value = e.title;
-        if (descInput) descInput.value = e.desc;
-        addBtn.click();
-      });
-    }
-  }, 800);
-})();
