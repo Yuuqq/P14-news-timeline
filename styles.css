@@ -19,14 +19,14 @@ body {
 }
 
 .app { max-width: 980px; margin: 0 auto; padding: 16px; }
-.hero, .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px; margin-bottom: 12px; }
+.hero, .card { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 14px; margin-bottom: 12px; }
 .hero h1 { margin: 0 0 8px; }
 label { display: block; font-weight: 700; margin-bottom: 6px; }
 textarea { width: 100%; border: 1px solid var(--line); border-radius: 10px; padding: 10px; font: inherit; }
 .actions { margin-top: 10px; }
 button {
   border: 0;
-  border-radius: 999px;
+  border-radius: 4px;
   padding: 8px 14px;
   color: #fff;
   cursor: pointer;
@@ -55,7 +55,7 @@ button {
   margin-bottom: 12px;
   background: #fff;
   border: 1px solid #d3e0ce;
-  border-radius: 12px;
+  border-radius: 6px;
   padding: 10px;
 }
 
