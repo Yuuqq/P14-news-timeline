@@ -56,9 +56,11 @@ function renderTimeline(items) {
     desc.textContent = String(it.desc ?? "");
 
     const deleteBtn = document.createElement("button");
-    deleteBtn.className = "delete-btn";
-    deleteBtn.textContent = "✕";
+    deleteBtn.type = "button";
+    deleteBtn.className = "delete-btn btn-secondary";
+    deleteBtn.textContent = "删除";
     deleteBtn.title = "删除此事件";
+    deleteBtn.setAttribute("aria-label", `删除事件：${it.title || "未命名"}`);
     deleteBtn.addEventListener("click", () => {
       currentData.splice(i, 1);
       syncAndRender();
@@ -67,15 +69,17 @@ function renderTimeline(items) {
 
     article.append(deleteBtn, date, title, desc);
 
-    // Fade-in
-    article.style.opacity = "0";
-    article.style.transform = "translateX(-10px)";
-    article.style.transition = "opacity 0.3s, transform 0.3s";
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     timelineEl.appendChild(article);
-    requestAnimationFrame(() => {
-      article.style.opacity = "1";
-      article.style.transform = "translateX(0)";
-    });
+    if (!reduceMotion) {
+      article.style.opacity = "0";
+      article.style.transform = "translateX(-10px)";
+      article.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+      requestAnimationFrame(() => {
+        article.style.opacity = "1";
+        article.style.transform = "translateX(0)";
+      });
+    }
   });
 }
 

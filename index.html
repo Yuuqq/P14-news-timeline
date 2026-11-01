@@ -1,15 +1,17 @@
 <!doctype html>
-<html lang="zh-CN" class="type-scale-v22">
+<html lang="zh-CN">
 
 <head>
   <meta charset="utf-8" />
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📰</text></svg>" />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#f6f9f5">
-  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#F0E6CF" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#241B11" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
   <title>P14 交互式突发新闻时间轴</title>
   <link rel="stylesheet" href="../shared/design-tokens.css" />
+  <link rel="stylesheet" href="../shared/modern-styles.css" />
+  <link rel="stylesheet" href="../shared/tool-chrome.css" />
   <link rel="stylesheet" href="./styles.css" />
   <meta name="description" content="交互式突发新闻时间轴。P14 交互式突发新闻时间轴" />
   <meta property="og:title" content="P14 交互式突发新闻时间轴" />
@@ -17,63 +19,52 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://yuuqq.github.io/P14-news-timeline/" />
   <link rel="manifest" href="./manifest.json" />
-<style media="print">
-.gnav,.pedagogy-panel,.explore-section,[class*="dark-toggle"],button[aria-label]{display:none!important}
-body{background:#fff!important;color:#000!important;font-size:11pt}
-.app,main,.container{box-shadow:none!important;border:none!important;padding:0!important}
-a{color:#000!important;text-decoration:underline}
-a[href]::after{content:" (" attr(href) ")";font-size:9pt;color:#666}
-@page{margin:2cm}
-</style>
 </head>
 
 <body>
-  <a href="#main" class="skip-link">跳到主内容 / Skip to main content</a>
-  <main id="main" aria-label="主内容区域" class="app">
-    <header class="hero">
-      <h1>交互式突发新闻时间轴</h1>
-      <p>编辑 JSON 事件数据，自动生成可滚动时间线叙事页面。</p>
+  <a href="#main" class="skip-link">跳到主内容</a>
+  <div class="app" id="app">
+    <header class="tool-chrome" data-tool-id="P14">
+      <a class="tool-chrome__mark" href="../P00-dashboard/">新闻实验工具</a>
+      <span class="tool-chrome__id">P14</span>
     </header>
 
-    <section class="card">
-      <details class="teach-card" open>
-        <summary>🎓 时间轴叙事与突发新闻</summary>
-        <p>时间轴是突发新闻报道的核心可视化工具。它可以帮助读者快速理解事件发展顺序，捕捉关键转折点。其应用场景包括危机管理可视化、政策演变追踪、司法案件进展研判等。</p>
-      </details>
-    </section>
+    <details class="tool-teach">
+      <summary>如何使用</summary>
+      <p>时间轴是突发新闻报道的核心可视化工具。它帮助读者看清事件顺序和关键转折，可用于危机进程、政策演变和案件进展。</p>
+      <p>在「时间轴 JSON」里编辑事件数组（date、title、desc、color），点「渲染时间线」生成叙事。也可以添加事件、删除单条，或导出 JSON 与 PNG。示例数据只供课堂练习。</p>
+    </details>
 
-    <section class="card">
-      <label for="jsonInput">时间轴 JSON</label>
-      <textarea id="jsonInput" rows="12"></textarea>
-      <div class="actions">
-        <button id="renderBtn" type="button" aria-label="render">渲染时间线</button>
-        <button id="addBtn" type="button" class="btn-secondary" aria-label="add">➕ 添加事件</button>
-        <button id="exportBtn" type="button" class="btn-secondary" aria-label="export">导出 JSON</button>
-        <button id="exportPngBtn" type="button" class="btn-secondary" data-target="timeline" aria-label="导出 PNG">📸 导出 PNG</button>
-      </div>
-      <p id="status" role="status" aria-live="polite">状态: 等待渲染</p>
-    </section>
+    <main id="main" aria-label="主内容区域">
+      <header class="hero">
+        <h1>交互式突发新闻时间轴</h1>
+        <p>编辑 JSON 事件数据，自动生成可滚动时间线叙事页面。</p>
+      </header>
 
-    <section id="timeline" class="timeline"></section>
-  </main>
+      <section class="card editor">
+        <label for="jsonInput">时间轴 JSON</label>
+        <textarea id="jsonInput" rows="12" spellcheck="false"></textarea>
+        <div class="actions">
+          <button id="renderBtn" type="button">渲染时间线</button>
+          <button id="addBtn" type="button" class="btn-secondary">添加事件</button>
+          <button id="exportBtn" type="button" class="btn-secondary">导出 JSON</button>
+          <button id="exportPngBtn" type="button" class="btn-secondary" data-target="timeline">导出 PNG</button>
+        </div>
+        <p id="status" role="status" aria-live="polite">状态: 等待渲染</p>
+      </section>
+
+      <section id="timeline" class="timeline" aria-label="时间线"></section>
+    </main>
+
+    <footer class="tool-footer">
+      数据边界以附录 A 为准：能在本机完成的计算不主动外发；示例数据仅供课堂；本工具输出不得单独当作结论。
+      <a href="../P00-dashboard/">返回工具箱</a>
+    </footer>
+  </div>
   <script src="./pm-metrics.js" defer></script>
   <script src="./app.js" defer></script>
-
-  <!-- Privacy Notice -->
-  <div style="text-align:center;padding:12px 16px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:24px;">
-    🔒 隐私提示：本工具所有数据处理均在您的浏览器本地完成，不会上传任何数据至服务器。
-  </div>
-
-  <!-- Cross-Project Navigation -->
-  <nav aria-label="工具箱导航"
-    style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;font-size:13px;border-top:1px solid #e5e5e5;margin-top:16px;color:#666;">
-    <a href="https://yuuqq.github.io/journalism-toolbox/" style="text-decoration:none;">📋 工具箱导航</a>
-    <span style="opacity:.4">P14</span>
-  </nav>
   <script src="../shared/releases/v2.6/loader.js" data-modules="dark,export-png,cmd,toast,onboarding,url-state,pedagogy-p1,pedagogy-p2,nav,kbd"></script>
   <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{})}</script>
-
 </body>
 
 </html>
-
